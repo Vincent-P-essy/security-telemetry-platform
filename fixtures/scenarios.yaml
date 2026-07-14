@@ -1,0 +1,63 @@
+# Synthetic security-telemetry scenarios. Each generates one trace threaded
+# through a service chain, a metric series, correlated logs, and (for incidents)
+# a security event. All values are fictional.
+scenarios:
+  - name: credential-stuffing
+    description: A burst of failed logins spikes auth failures and opens an incident.
+    service_chain: [api-gateway, auth-service, incident-tracker-api]
+    anomaly_metric: auth_failures_total
+    baseline_value: 3
+    length: 12
+    spike_at: 8
+    spike_value: 95
+    drift_metric: auth_error_rate
+    drift_baseline: [0.01, 0.02, 0.02, 0.03, 0.01, 0.02, 0.02, 0.01, 0.03, 0.02]
+    drift_current: [0.30, 0.40, 0.35, 0.45, 0.50, 0.38, 0.42, 0.33, 0.48, 0.40]
+    security_category: credential_stuffing
+    security_severity: high
+    expect_anomaly: true
+    expect_drift: true
+    expect_security_alert: true
+
+  - name: data-exfiltration
+    description: An internal service ships an unusually large payload to object storage.
+    service_chain: [api-gateway, report-service, object-store]
+    anomaly_metric: egress_bytes
+    baseline_value: 1000
+    length: 12
+    spike_at: 9
+    spike_value: 500000
+    drift_metric: egress_bytes
+    drift_baseline: [1000, 1100, 1050, 1200, 1000, 1100, 1150, 1000]
+    drift_current: [400000, 500000, 450000, 480000, 520000, 410000, 490000, 460000]
+    security_category: data_exfiltration
+    security_severity: critical
+    expect_anomaly: true
+    expect_drift: true
+    expect_security_alert: true
+
+  - name: latency-drift
+    description: Checkout latency drifts upward with no discrete spike; drift catches it.
+    service_chain: [api-gateway, checkout-service]
+    anomaly_metric: request_duration_ms
+    baseline_value: 120
+    length: 12
+    drift_metric: request_duration_ms
+    drift_baseline: [110, 120, 115, 125, 118, 122, 119, 121, 117, 123]
+    drift_current: [280, 300, 290, 310, 305, 295, 315, 285, 320, 300]
+    expect_anomaly: false
+    expect_drift: true
+    expect_security_alert: false
+
+  - name: baseline-healthy
+    description: Normal traffic; nothing anomalous, nothing drifting, no security event.
+    service_chain: [api-gateway, catalog-service]
+    anomaly_metric: request_duration_ms
+    baseline_value: 100
+    length: 12
+    drift_metric: request_duration_ms
+    drift_baseline: [100, 105, 98, 102, 101, 99, 103, 100]
+    drift_current: [101, 99, 104, 100, 98, 102, 101, 103]
+    expect_anomaly: false
+    expect_drift: false
+    expect_security_alert: false

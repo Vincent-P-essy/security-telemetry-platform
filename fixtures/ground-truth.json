@@ -1,0 +1,38 @@
+{
+  "baseline-healthy": {
+    "anomalies": 0,
+    "correlated_events": 0,
+    "correlated_logs": 2,
+    "correlated_spans": 2,
+    "drift_alerts": 0,
+    "security_alerts": 0,
+    "total_alerts": 0
+  },
+  "credential-stuffing": {
+    "anomalies": 1,
+    "correlated_events": 1,
+    "correlated_logs": 4,
+    "correlated_spans": 3,
+    "drift_alerts": 1,
+    "security_alerts": 1,
+    "total_alerts": 3
+  },
+  "data-exfiltration": {
+    "anomalies": 1,
+    "correlated_events": 1,
+    "correlated_logs": 4,
+    "correlated_spans": 3,
+    "drift_alerts": 1,
+    "security_alerts": 1,
+    "total_alerts": 3
+  },
+  "latency-drift": {
+    "anomalies": 0,
+    "correlated_events": 0,
+    "correlated_logs": 2,
+    "correlated_spans": 2,
+    "drift_alerts": 1,
+    "security_alerts": 0,
+    "total_alerts": 1
+  }
+}

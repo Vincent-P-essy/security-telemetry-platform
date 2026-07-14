@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Security Telemetry Platform</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Security Telemetry Platform</h1>
+      <p id="subtitle">One suspicious request, one trace id, one story across traces, metrics, logs, and alerts.</p>
+    </header>
+
+    <main>
+      <section class="panel">
+        <h2>Scenarios</h2>
+        <p class="hint">Click a scenario to correlate every signal that shares its trace id.</p>
+        <div id="scenarios" class="scenario-list"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Correlated view</h2>
+        <div id="detail"><p class="hint">Select a scenario above.</p></div>
+      </section>
+    </main>
+
+    <footer>
+      <span id="meta"></span>
+      <a href="/docs">OpenAPI</a>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

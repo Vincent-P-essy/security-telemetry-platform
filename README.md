@@ -21,6 +21,12 @@ correlations and alerts, so a run is reproducible evidence. It is a
 portfolio-grade prototype over synthetic telemetry, not a production observability
 platform.
 
+## Running example
+
+![security-telemetry-platform running locally](docs/screenshots/application.png)
+
+The credential-stuffing scenario: correlated traces, application logs and security alerts from the bundled synthetic environment. [Commands and test results](docs/verification.md).
+
 ## Measured evidence
 
 | Measurement | Reviewed result | Scope |
